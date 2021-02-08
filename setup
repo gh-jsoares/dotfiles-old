@@ -3,20 +3,34 @@
 rm -rf ~/.config/i3/
 rm -rf ~/.config/i3status/
 rm -rf ~/.config/terminator/
+rm -rf ~/bin
+[ ! -e ~/.zshrc ] || rm -r ~/.zshrc
+[ ! -e ~/.p10k.zsh ] || rm -r ~/.p10k.zsh
+[ ! -e ~/.fph.key ] || rm -r ~/.fph.key
 
 mkdir -p ~/.config/i3/
 mkdir -p ~/.config/i3status/
 mkdir -p ~/.config/terminator/
+mkdir -p ~/bin
 # mkdir -p ~/.config/nvim/lua
 
 DIR=$(dirname $(realpath -s $0))
 
-ln -s -T $DIR/i3 ~/.config/i3/config 
-ln -s -T $DIR/i3status ~/.config/i3status/config
-ln -s -T $DIR/terminator ~/.config/terminator/config
+ln -sT $DIR/i3 ~/.config/i3/config 
+ln -sT $DIR/i3status ~/.config/i3status/config
+ln -sT $DIR/terminator ~/.config/terminator/config
+ln -sT $DIR/.zshrc ~/.zshrc
+ln -sT $DIR/.p10k.zsh ~/.p10k.zsh
+ln -s $DIR/scripts/* ~/bin/
+ln -sT $DIR/.fph.key ~/.fph.key
+chmod +x ~/bin/*
 
 # link everything
 # for f in `find . -regex ".*\.vim$\|.*\.lua$"`; do
     # rm -rf ~/$f
     # ln -s ~/dotfiles/$f ~/$f
 # done
+
+git config --global init.defaultBranch main
+
+echo Perform \'source ~/.zshrc\' to reload the shell

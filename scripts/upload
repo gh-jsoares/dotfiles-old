@@ -1,0 +1,51 @@
+#!/bin/bash
+
+zip_folder() {
+	echo Zipping dir \'$1\'...
+	fileName=${1%/}.zip
+	zip -r $fileName $1
+}
+
+upload_file() {
+	echo Uploading file \'$1\'...
+	apikey=$FILES_PH_API_KEY
+
+	if [ -z "$apikey" ]; then
+		echo "No api key set"
+		echo "Perform 'export FILES_PH_API_KEY=YOU API KEY"
+		return
+	fi
+
+	result=$(curl --progress-bar -F "file=@$1" -H "API-KEY: $apikey" "https://files.perpheads.com/upload" | jq --raw-output ".link")
+	link="https://files.perpheads.com/$result"
+	# Stop if failed to upload
+	if [ $? -ne 0 ]; then
+	  return
+	fi
+	echo $link | xclip -selection c
+	echo -e Uploaded to $link.\\nLink copied to clipboard
+}
+
+if [ $# -eq 0 ]; then
+	echo "No file specified"
+	exit
+fi
+
+# Check if files exist
+for ((i=1;i<=$#;i++)); do
+	if [ ! -f ${!i} ] && [ ! -d ${!i} ]; then
+		echo File \'${!i}\' not found
+		exit
+	fi
+done;
+
+for ((i=1;i<=$#;i++)); do
+	if [ -f ${!i} ]; then
+		upload_file ${!i}
+	elif [ -d ${!i} ]; then
+		zip_folder ${!i}
+		upload_file $fileName
+		echo Removing temporary zip file $fileName...
+		rm $fileName
+	fi
+done;

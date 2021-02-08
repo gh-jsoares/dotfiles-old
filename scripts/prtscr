@@ -1,0 +1,23 @@
+#!/bin/bash
+
+screenshot_and_upload() {
+	folder=$HOME/Pictures/Screenshots
+	mkdir -p $folder
+	filename=$(date +"%Y-%m-%d-%H%M%S").jpg
+	filepath="$folder/$filename"
+	
+	if [ $# -eq 1 ] && [ $1 == "-c" ]; then
+		scrot -f -s -q 90 $filepath
+	else
+		scrot -f -q 90 $filepath
+	fi
+
+	# Stop if scrot does not take screenshot
+	if [ $? -ne 0 ]; then
+	  return
+	fi
+
+	upload $filepath
+}
+
+screenshot_and_upload
