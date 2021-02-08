@@ -1,10 +1,28 @@
 #!/usr/bin/env bash
-mkdir -p ~/.config/nvim/plugin
-mkdir -p ~/.config/nvim/after/plugin
-mkdir -p ~/.config/nvim/lua
 
-# link everything
-for f in `find . -regex ".*\.vim$\|.*\.lua$"`; do
-    rm -rf ~/$f
-    ln -s ~/dotfiles/$f ~/$f
-done
+
+if [ "$EUID" -ne 0 ]; then
+	mkdir -p ~/Pictures
+	curl -o ~/Pictures/bg.png https://files.perpheads.com/BBLUKYaapCkNH6iy.png
+
+	if [[ ! -d i3-gaps-deb ]]; then
+		git clone git@github.com:maestrogerardo/i3-gaps-deb.git
+		RESULT=$?
+		if [ $RESULT -ne 0 ]; then
+			exit
+		fi
+	fi
+
+	sudo "$0"
+	exit $?
+fi
+
+cd i3-gaps-deb
+chmod +x i3-gaps-deb
+# ./i3-gaps-deb
+cd ..
+rm -rf i3-gaps-deb
+
+apt -y install i3status feh terminator neovim zip xclip jq scrot
+
+git config --global init.defaultBranch main

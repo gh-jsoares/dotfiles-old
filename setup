@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+rm -rf ~/.config/i3/
+rm -rf ~/.config/i3status/
+rm -rf ~/.config/terminator/
+
+mkdir -p ~/.config/i3/
+mkdir -p ~/.config/i3status/
+mkdir -p ~/.config/terminator/
+# mkdir -p ~/.config/nvim/lua
+
+DIR=$(dirname $(realpath -s $0))
+
+ln -s -T $DIR/i3 ~/.config/i3/config 
+ln -s -T $DIR/i3status ~/.config/i3status/config
+ln -s -T $DIR/terminator ~/.config/terminator/config
+
+# link everything
+# for f in `find . -regex ".*\.vim$\|.*\.lua$"`; do
+    # rm -rf ~/$f
+    # ln -s ~/dotfiles/$f ~/$f
+# done
