@@ -13,7 +13,7 @@ fi
 
 cd i3-gaps-deb
 chmod +x i3-gaps-deb
-# sudo ./i3-gaps-deb
+sudo ./i3-gaps-deb
 cd ..
 sudo rm -rf i3-gaps-deb
 
