@@ -119,4 +119,4 @@ alias vi='nvim'
 
 # load user scripts
 export PATH=$HOME/bin:$PATH
-export FILES_PH_API_KEY=$(cat .fph.key)
+export FILES_PH_API_KEY=$(cat ~/.fph.key)
