@@ -26,6 +26,7 @@ ln -s $DIR/scripts/* ~/bin/
 ln -sT $DIR/.fph.key ~/.fph.key
 ln -sT $DIR/init.vim ~/.config/nvim/init.vim
 ln -sT $DIR/nvim ~/.config/nvim/plugins
+ln -sT $DIR/coc-settings.json ~/.config/nvim/coc-settings.json
 
 chmod +x ~/bin/*
 
