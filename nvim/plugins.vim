@@ -30,4 +30,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'Yggdroot/indentLine'
     " Code completion with CoC
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
 call plug#end()
