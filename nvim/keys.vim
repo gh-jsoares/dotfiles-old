@@ -26,7 +26,7 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " Source init.vim
-nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
+nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>:call InstallPlugins()<CR>
 
 " Buffer keybinds to navigate and close
 nnoremap <C-k> :bprev<CR>
