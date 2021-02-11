@@ -3,6 +3,7 @@ let g:mapleader = "\<Space>"
 
 syntax enable                           " Enables syntax highlighing
 set guicursor=                          " Disable gui cursor
+set relativenumber                      " Relative line numbers
 set nohlsearch                          " Stop highlighting search
 set hidden                              " Required to keep multiple buffers open multiple buffers
 set noerrorbells                        " No more of that annoying bell sound
@@ -48,14 +49,3 @@ set clipboard=unnamedplus               " Copy paste between vim and everything 
 " You can't stop me
 cmap w!! w !sudo tee %
 com! W w
-
-augroup highlight_yank
-    autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 100})
-augroup END
-
-
-augroup auto_source_viminit
-    autocmd!
-    au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm alternatively you can run :source $MYVIMRC
-augroup END

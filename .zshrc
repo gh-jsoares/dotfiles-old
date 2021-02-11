@@ -121,3 +121,11 @@ alias vi='nvim'
 export PATH=$HOME/bin:$PATH
 export FILES_PH_API_KEY=$(cat ~/.fph.key)
 export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+
+# npm
+export PATH="/home/jsoares/n/bin:$PATH"
+
+# Python
+export PATH="/home/jsoares/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
