@@ -7,13 +7,17 @@ rm -rf ~/bin
 [ ! -e ~/.zshrc ] || rm -r ~/.zshrc
 [ ! -e ~/.p10k.zsh ] || rm -r ~/.p10k.zsh
 [ ! -e ~/.fph.key ] || rm -r ~/.fph.key
-rm -rf ~/.config/nvim/
+[ ! -e ~/.config/nvim/plugins/ ] || unlink ~/.config/nvim/plugins
+[ ! -e ~/.config/nvim/coc-settings.json ] || rm ~/.config/nvim/coc-settings.json
+[ ! -e ~/.config/nvim/init.vim ] || rm -r ~/.config/nvim/init.vim
+[ ! -e ~/.config/ranger/rc.conf ] || rm -r ~/.config/ranger/rc.conf
 
 mkdir -p ~/.config/i3/
 mkdir -p ~/.config/i3status/
 mkdir -p ~/.config/terminator/
 mkdir -p ~/bin
 mkdir -p ~/.config/nvim/
+mkdir -p ~/.config/ranger/
 
 DIR=$(dirname $(realpath -s $0))
 
@@ -27,14 +31,14 @@ ln -sT $DIR/.fph.key ~/.fph.key
 ln -sT $DIR/init.vim ~/.config/nvim/init.vim
 ln -sT $DIR/nvim ~/.config/nvim/plugins
 ln -sT $DIR/coc-settings.json ~/.config/nvim/coc-settings.json
+ln -sT $DIR/ranger.conf ~/.config/ranger/rc.conf
 
 chmod +x ~/bin/*
 
-# link everything
-# for f in `find . -regex ".*\.vim$\|.*\.lua$"`; do
-    # rm -rf ~/$f
-    # ln -s ~/dotfiles/$f ~/$f
-# done
+# Install ranger devicons
+if [[ ! -d ~/.config/ranger/plugins/ranger_devicons ]]; then
+    git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+fi
 
 git config --global init.defaultBranch main
 

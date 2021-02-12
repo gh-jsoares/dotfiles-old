@@ -17,7 +17,7 @@ sudo ./i3-gaps-deb
 cd ..
 sudo rm -rf i3-gaps-deb
 
-sudo apt -y install i3status feh terminator neovim zip xclip jq scrot zsh
+sudo apt -y install i3status feh terminator neovim zip xclip jq scrot zsh ranger
 
 # Install and setup oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
